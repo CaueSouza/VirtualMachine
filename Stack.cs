@@ -8,16 +8,16 @@ namespace VirtualMachine
     {
 		private int top;
 		private int capacity;
-		private String[] array;
+		private Object[] array;
 
 		public Stack()
 		{
 			capacity = 1;
-			array = new String[capacity];
+			array = new Object[capacity];
 			top = -1;
 		}
 
-		public void push(String data)
+		public void push(Object data)
 		{
 			if (isFull())
 			{
@@ -26,7 +26,7 @@ namespace VirtualMachine
 			array[++top] = data; // insert the data
 		}
 
-		public String pop()
+		public Object pop()
 		{
 			if (isEmpty())
 			{
@@ -59,7 +59,7 @@ namespace VirtualMachine
 		public void expandArray()
 		{
 			int curr_size = top + 1;
-			String[] new_array = new String[curr_size * 2];
+			Object[] new_array = new Object[curr_size * 2];
 			for (int i = 0; i < curr_size; i++)
 			{
 				new_array[i] = array[i];
@@ -73,7 +73,7 @@ namespace VirtualMachine
 			int curr_length = top + 1;
 			if (curr_length < capacity / 2)
 			{
-				String[] new_array = new String[capacity / 2];
+				Object[] new_array = new Object[capacity / 2];
 				Array.Copy(array, 0, new_array, 0, new_array.Length);
 				array = new_array;
 				capacity = new_array.Length;
@@ -85,10 +85,10 @@ namespace VirtualMachine
 			return top;
 		}
 
-		public String getPosition(int position)
+		public Object getPosition(int position)
 		{
 			if (position > top)
-				return "";
+				return null;
 			else
 			{
 				return array[position];
