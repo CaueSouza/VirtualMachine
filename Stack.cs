@@ -95,6 +95,14 @@ namespace VirtualMachine
 			}
 		}
 
+		public void setPosition(int position, Object data)
+		{
+			if (position >= 0 && position <= top)
+            {
+				array[position] = data;
+			}
+		}
+
 		public void display()
 		{
 			for (int i = 0; i <= top; i++)

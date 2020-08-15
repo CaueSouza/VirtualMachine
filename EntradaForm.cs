@@ -10,6 +10,7 @@ namespace VirtualMachine
 {
     public partial class EntradaForm : Form
     {
+        public string SelectedText { get; set; }
         public EntradaForm()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace VirtualMachine
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            SelectedText = textBox1.Text;
         }
 
         private void button1_Click(object sender, EventArgs e)
