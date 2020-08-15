@@ -16,6 +16,8 @@ namespace VirtualMachine
         private OpenFileDialog openFileDialog;
         private ArrayList arrayListCommands = new ArrayList();
         private Stack dataStack = new Stack();
+        private int operationMode = 0;
+        //operationMode 0 = normal // 1 = passo a passo
 
         private bool hasStringEnded = false;
 
@@ -209,6 +211,42 @@ namespace VirtualMachine
 
                 i++;
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e) //entrada
+        {
+
+        }
+
+        private void richTextBox2_TextChanged(object sender, EventArgs e) //saída
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e) //normal
+        {
+            if (radioButton1.Checked == true)
+            {
+                radioButton2.Checked = false;
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e) //passo a passo
+        {
+            if (radioButton2.Checked == true)
+            {
+                radioButton1.Checked = false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e) //executar
+        {
+
         }
     }
 }
