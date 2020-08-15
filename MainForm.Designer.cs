@@ -28,13 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Índice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.BreakPoints = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Linha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Instrução = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,10 +35,85 @@
             this.Valor_2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Comentário = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Índice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Valor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // BreakPoints
+            // 
+            this.BreakPoints.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BreakPoints.FillWeight = 105F;
+            this.BreakPoints.HeaderText = "BreakPoints";
+            this.BreakPoints.Name = "BreakPoints";
+            this.BreakPoints.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Linha
+            // 
+            this.Linha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Linha.HeaderText = "Linha";
+            this.Linha.Name = "Linha";
+            this.Linha.ReadOnly = true;
+            this.Linha.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Instrução
+            // 
+            this.Instrução.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Instrução.HeaderText = "Instrução";
+            this.Instrução.Name = "Instrução";
+            this.Instrução.ReadOnly = true;
+            this.Instrução.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Valor_1
+            // 
+            this.Valor_1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Valor_1.HeaderText = "Valor_1";
+            this.Valor_1.Name = "Valor_1";
+            this.Valor_1.ReadOnly = true;
+            this.Valor_1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Valor_2
+            // 
+            this.Valor_2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Valor_2.HeaderText = "Valor_2";
+            this.Valor_2.Name = "Valor_2";
+            this.Valor_2.ReadOnly = true;
+            this.Valor_2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // Comentário
+            // 
+            this.Comentário.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Comentário.FillWeight = 200F;
+            this.Comentário.HeaderText = "Comentário";
+            this.Comentário.Name = "Comentário";
+            this.Comentário.ReadOnly = true;
+            this.Comentário.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.BreakPoints,
+            this.Linha,
+            this.Instrução,
+            this.Valor_1,
+            this.Valor_2,
+            this.Comentário});
+            this.dataGridView1.Location = new System.Drawing.Point(12, 27);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(694, 345);
+            this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.Text = "dataGridView1";
             // 
             // Índice
             // 
@@ -110,75 +178,6 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(50, 20);
             this.toolStripMenuItem2.Text = "Ajuda";
             // 
-            // BreakPoints
-            // 
-            this.BreakPoints.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BreakPoints.FillWeight = 90F;
-            this.BreakPoints.HeaderText = "BreakPoints";
-            this.BreakPoints.Name = "BreakPoints";
-            this.BreakPoints.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Linha
-            // 
-            this.Linha.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Linha.FillWeight = 60F;
-            this.Linha.HeaderText = "Linha";
-            this.Linha.Name = "Linha";
-            this.Linha.ReadOnly = true;
-            this.Linha.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Instrução
-            // 
-            this.Instrução.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Instrução.HeaderText = "Instrução";
-            this.Instrução.Name = "Instrução";
-            this.Instrução.ReadOnly = true;
-            this.Instrução.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Valor_1
-            // 
-            this.Valor_1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Valor_1.HeaderText = "Valor_1";
-            this.Valor_1.Name = "Valor_1";
-            this.Valor_1.ReadOnly = true;
-            this.Valor_1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Valor_2
-            // 
-            this.Valor_2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Valor_2.HeaderText = "Valor_2";
-            this.Valor_2.Name = "Valor_2";
-            this.Valor_2.ReadOnly = true;
-            this.Valor_2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // Comentário
-            // 
-            this.Comentário.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Comentário.FillWeight = 250F;
-            this.Comentário.HeaderText = "Comentário";
-            this.Comentário.Name = "Comentário";
-            this.Comentário.ReadOnly = true;
-            this.Comentário.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.BreakPoints,
-            this.Linha,
-            this.Instrução,
-            this.Valor_1,
-            this.Valor_2,
-            this.Comentário});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 27);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(694, 345);
-            this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.Text = "dataGridView1";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -190,10 +189,10 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "MainForm";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,6 +200,12 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn BreakPoints;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Linha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Instrução;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor_1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Valor_2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Comentário;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Índice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Valor;
@@ -208,11 +213,5 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn BreakPoints;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Linha;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Instrução;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor_1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Valor_2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Comentário;
     }
 }
