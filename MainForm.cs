@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ namespace VirtualMachine
     public partial class MainForm : Form
     {
         private OpenFileDialog openFileDialog;
-        private Stack codeStack = new Stack();
+        private ArrayList arrayListCommands = new ArrayList();
         private Stack dataStack = new Stack();
 
         private bool hasStringEnded = false;
@@ -78,7 +79,7 @@ namespace VirtualMachine
                 if (firstAttribute.Equals(""))
                 {
                     newCommand = new Command(mainCommand);
-                } 
+                }
                 else if (secondAttribute.Equals(""))
                 {
                     newCommand = new Command(mainCommand, firstAttribute);
@@ -88,7 +89,7 @@ namespace VirtualMachine
                     newCommand = new Command(mainCommand, firstAttribute, secondAttribute);
                 }
 
-                codeStack.push(newCommand);
+                arrayListCommands.Add(newCommand);
             }
         }
 
@@ -117,7 +118,7 @@ namespace VirtualMachine
                     var filePath = openFileDialog.FileName;
                     using (Stream str = openFileDialog.OpenFile())
                     {
-                        codeStack.cleanStack();
+                        arrayListCommands = new ArrayList();
                         parseFileCommands(filePath);
                     }
                 }
@@ -127,76 +128,87 @@ namespace VirtualMachine
                     $"Details:\n\n{ex.StackTrace}");
                 }
             }
+
+            int i = 0;
+            foreach (Object obj in arrayListCommands)
+            {
+                Command actualCommand = (Command) obj;
+
+                dataGridView1.Rows.Add(
+                    false,
+                    i.ToString(),
+                    actualCommand.mainCommand,
+                    actualCommand.firstAttribute,
+                    actualCommand.secondAttribute,
+                    getComment(actualCommand.mainCommand));
+
+                i++;
+            }
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        public string getComment(string command)
         {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel12_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox49_TextChanged(object sender, EventArgs e)
-        {
-
+            switch (command)
+            {
+                case "LDC":
+                    return "Carregar constante";
+                case "LDV":
+                    return "Carregar valor";
+                case "ADD":
+                    return "Somar";
+                case "SUB":
+                    return "Subtrair";
+                case "MULT":
+                    return "Multiplicar";
+                case "DIVI":
+                    return "Dividir";
+                case "INV":
+                    return "Inverter sinal";
+                case "AND":
+                    return "Conjunção";
+                case "OR":
+                    return "Disjunção";
+                case "NEG":
+                    return "Negação";
+                case "CME":
+                    return "Comparar menor";
+                case "CMA":
+                    return "Comparar maior";
+                case "CEQ":
+                    return "Comparar igual";
+                case "CDIF":
+                    return "Comparar desigual";
+                case "CMEQ":
+                    return "Comparar menor ou igual";
+                case "CMAQ":
+                    return "Comparar maior ou igual";
+                case "START":
+                    return "Iniciar programa principal";
+                case "HLT":
+                    return "Parar";
+                case "STR":
+                    return "Armazenar valor";
+                case "JMP":
+                    return "Desviar sempre";
+                case "JMPF":
+                    return "Desviar se falso";
+                case "NULL":
+                    return "Nada";
+                case "RD":
+                    return "Leitura";
+                case "PRN":
+                    return "Impressão";
+                case "ALLOC":
+                    return "Alocar memória";
+                case "DALLOC":
+                    return "Desalocar memória";
+                case "CALL":
+                    return "Chamar procedimento ou função";
+                case "RETURN":
+                    return "Retornar de procedimento";
+                default:
+                    return "";
+            }
         }
     }
 }
