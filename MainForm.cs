@@ -186,6 +186,8 @@ namespace VirtualMachine
                     using (Stream str = openFileDialog.OpenFile())
                     {
                         arrayListCommands = new ArrayList();
+                        dataGridView1.Rows.Clear();
+                        dataStack.cleanStack();
                         parseFileCommands(filePath);
                     }
                 }
@@ -196,6 +198,43 @@ namespace VirtualMachine
                 }
             }
 
+            showCodeDataInGrid();
+        }
+
+        private int findCommandPosition(string command)
+        {
+            int count = 0;
+
+            foreach (Object obj in arrayListCommands)
+            {
+                Command actualCommand = (Command)obj;
+
+                if (actualCommand.mainCommand.Equals(command))
+                {
+                    return count;
+                }
+
+                count++;
+            }
+
+            return -1;
+        }
+
+        private void updateDataStackGrid()
+        {
+            dataGridView2.Rows.Clear();
+            dataGridView2.Refresh();
+            for (int i = 0; i <= dataStack.getLength(); i++)
+            {
+                dataGridView2.Rows.Add(
+                    i.ToString(),
+                    dataStack.getPosition(i).ToString()
+                    );
+            }
+        }
+
+        private void showCodeDataInGrid()
+        {
             int i = 0;
             foreach (Object obj in arrayListCommands)
             {
@@ -211,6 +250,278 @@ namespace VirtualMachine
 
                 i++;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e) //executar
+        {
+            if (radioButton1.Checked)
+            {
+                runningNormally();
+            }
+            else
+            {
+                runStepByStep();
+            }
+        }
+
+        private void runningNormally()
+        {
+            int i = 0;
+            Command actualCommand;
+
+            do
+            {
+                actualCommand = (Command)arrayListCommands[i];
+                string string1;
+                string string2;
+                string result;
+                int int1;
+
+                switch (actualCommand.mainCommand)
+                {
+                    case "LDC":
+                        dataStack.push(actualCommand.firstAttribute);
+                        break;
+
+                    case "LDV":
+                        int1 = int.Parse(actualCommand.firstAttribute);
+                        result = (string)dataStack.getPosition(int1);
+                        dataStack.push(result);
+                        break;
+
+                    case "ADD":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+                        result = (int.Parse(string2) + int.Parse(string1)).ToString();
+                        dataStack.push(result);
+                        break;
+
+                    case "SUB":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+                        result = (int.Parse(string2) - int.Parse(string1)).ToString();
+                        dataStack.push(result);
+                        break;
+
+                    case "MULT":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+                        result = (int.Parse(string2) * int.Parse(string1)).ToString();
+                        dataStack.push(result);
+                        break;
+
+                    case "DIVI":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+                        result = (int.Parse(string2) / int.Parse(string1)).ToString();
+                        dataStack.push(result);
+                        break;
+
+                    case "INV":
+                        string1 = (string)dataStack.pop();
+                        result = (-int.Parse(string1)).ToString();
+                        dataStack.push(result);
+                        break;
+
+                    case "AND":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+
+                        if (string1.Equals("1") && string2.Equals("1"))
+                        {
+                            result = "1";
+                        }
+                        else
+                        {
+                            result = "0";
+                        }
+
+                        dataStack.push(result);
+                        break;
+
+                    case "OR":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+
+                        if (string1.Equals("1") || string2.Equals("1"))
+                        {
+                            result = "1";
+                        }
+                        else
+                        {
+                            result = "0";
+                        }
+
+                        dataStack.push(result);
+                        break;
+
+                    case "NEG":
+                        string1 = (string)dataStack.pop();
+                        result = (1 - int.Parse(string1)).ToString();
+                        dataStack.push(result);
+                        break;
+
+                    case "CME":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+
+                        if (int.Parse(string2) < int.Parse(string1))
+                        {
+                            result = "1";
+                        }
+                        else
+                        {
+                            result = "0";
+                        }
+
+                        dataStack.push(result);
+                        break;
+
+                    case "CMA":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+
+                        if (int.Parse(string2) > int.Parse(string1))
+                        {
+                            result = "1";
+                        }
+                        else
+                        {
+                            result = "0";
+                        }
+
+                        dataStack.push(result);
+                        break;
+
+                    case "CEQ":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+
+                        if (string1.Equals(string2))
+                        {
+                            result = "1";
+                        }
+                        else
+                        {
+                            result = "0";
+                        }
+
+                        dataStack.push(result);
+                        break;
+
+                    case "CDIF":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+
+                        if (string1.Equals(string2))
+                        {
+                            result = "0";
+                        }
+                        else
+                        {
+                            result = "1";
+                        }
+
+                        dataStack.push(result);
+                        break;
+
+                    case "CMEQ":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+
+                        if (int.Parse(string2) <= int.Parse(string1))
+                        {
+                            result = "1";
+                        }
+                        else
+                        {
+                            result = "0";
+                        }
+
+                        dataStack.push(result);
+                        break;
+
+                    case "CMAQ":
+                        string1 = (string)dataStack.pop();
+                        string2 = (string)dataStack.pop();
+
+                        if (int.Parse(string2) >= int.Parse(string1))
+                        {
+                            result = "1";
+                        }
+                        else
+                        {
+                            result = "0";
+                        }
+
+                        dataStack.push(result);
+                        break;
+
+                    case "STR":
+                        string1 = (string)dataStack.pop();
+                        dataStack.setPosition(int.Parse(actualCommand.firstAttribute), string1);
+                        break;
+
+                    case "JMP":
+                        i = findCommandPosition(actualCommand.firstAttribute);
+                        break;
+
+                    case "JMPF":
+                        string1 = (string)dataStack.pop();
+
+                        if (string1.Equals("0"))
+                        {
+                            i = findCommandPosition(actualCommand.firstAttribute);
+                        }
+                        break;
+
+                    case "RD":
+                        using (EntradaForm entradaForm = new EntradaForm())
+                        {
+                            if (entradaForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            {
+                                result = entradaForm.SelectedText;
+
+                                richTextBox1.Text += result + "\n";
+                                dataStack.push(result);
+                            }
+                        }
+
+                        break;
+                    case "PRN":
+                        string1 = (string)dataStack.pop();
+                        richTextBox2.Text += string1 + "\n";
+                        break;
+                    case "ALLOC":
+                        break;
+                    case "DALLOC":
+                        break;
+                    case "CALL":
+                        result = (i + 1).ToString();
+                        dataStack.push(result);
+                        i = findCommandPosition(actualCommand.firstAttribute);
+                        break;
+                    case "RETURN":
+                        string1 = (string)dataStack.pop();
+                        i = int.Parse(string1);
+                        break;
+
+                    case "START":
+                    case "NULL":
+                    case "HLT":
+                        break;
+                    default:
+                        break;
+                }
+
+                updateDataStackGrid();
+                i++;
+            } while (actualCommand.mainCommand != "HLT");
+        }
+
+        private void runStepByStep()
+        {
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -242,11 +553,6 @@ namespace VirtualMachine
             {
                 radioButton1.Checked = false;
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e) //executar
-        {
-
         }
     }
 }
