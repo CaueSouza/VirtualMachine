@@ -109,43 +109,6 @@ namespace VirtualMachine
             return position;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    var filePath = openFileDialog.FileName;
-                    using (Stream str = openFileDialog.OpenFile())
-                    {
-                        arrayListCommands = new ArrayList();
-                        parseFileCommands(filePath);
-                    }
-                }
-                catch (SecurityException ex)
-                {
-                    MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
-                    $"Details:\n\n{ex.StackTrace}");
-                }
-            }
-
-            int i = 0;
-            foreach (Object obj in arrayListCommands)
-            {
-                Command actualCommand = (Command) obj;
-
-                dataGridView1.Rows.Add(
-                    false,
-                    i.ToString(),
-                    actualCommand.mainCommand,
-                    actualCommand.firstAttribute,
-                    actualCommand.secondAttribute,
-                    getComment(actualCommand.mainCommand));
-
-                i++;
-            }
-        }
-
         public string getComment(string command)
         {
             switch (command)
@@ -208,6 +171,43 @@ namespace VirtualMachine
                     return "Retornar de procedimento";
                 default:
                     return "";
+            }
+        }
+
+        private void toolStripMenuItem3_Click(Object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var filePath = openFileDialog.FileName;
+                    using (Stream str = openFileDialog.OpenFile())
+                    {
+                        arrayListCommands = new ArrayList();
+                        parseFileCommands(filePath);
+                    }
+                }
+                catch (SecurityException ex)
+                {
+                    MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
+                    $"Details:\n\n{ex.StackTrace}");
+                }
+            }
+
+            int i = 0;
+            foreach (Object obj in arrayListCommands)
+            {
+                Command actualCommand = (Command)obj;
+
+                dataGridView1.Rows.Add(
+                    false,
+                    i.ToString(),
+                    actualCommand.mainCommand,
+                    actualCommand.firstAttribute,
+                    actualCommand.secondAttribute,
+                    getComment(actualCommand.mainCommand));
+
+                i++;
             }
         }
     }
