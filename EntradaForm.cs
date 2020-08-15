@@ -11,6 +11,7 @@ namespace VirtualMachine
     public partial class EntradaForm : Form
     {
         public string SelectedText { get; set; }
+        
         public EntradaForm()
         {
             InitializeComponent();
