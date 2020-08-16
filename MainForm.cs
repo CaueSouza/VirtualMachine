@@ -545,7 +545,7 @@ namespace VirtualMachine
                         case "CALL":
                             result = (i + 1).ToString();
                             dataStack.push(result);
-                            i = findCommandPosition(actualCommand.firstAttribute);
+                            i = findCommandPosition(actualCommand.firstAttribute)-1;
                             break;
 
                         case "RETURN":
