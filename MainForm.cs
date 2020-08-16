@@ -254,6 +254,8 @@ namespace VirtualMachine
 
         private void button1_Click(object sender, EventArgs e) //executar
         {
+            richTextBox1.Text = "";
+            richTextBox2.Text = "";
             if (radioButton1.Checked)
             {
                 runningNormally();
@@ -266,257 +268,278 @@ namespace VirtualMachine
 
         private void runningNormally()
         {
-            int i = 0;
-            Command actualCommand;
-
-            do
+            if (arrayListCommands.Count != 0)
             {
-                actualCommand = (Command)arrayListCommands[i];
-                string string1;
-                string string2;
-                string result;
-                int int1;
+                int i = 0;
+                Command actualCommand;
 
-                switch (actualCommand.mainCommand)
+                do
                 {
-                    case "LDC":
-                        dataStack.push(actualCommand.firstAttribute);
-                        break;
+                    actualCommand = (Command)arrayListCommands[i];
+                    string string1;
+                    string string2;
+                    string result;
+                    int int1;
 
-                    case "LDV":
-                        int1 = int.Parse(actualCommand.firstAttribute);
-                        result = (string)dataStack.getPosition(int1);
-                        dataStack.push(result);
-                        break;
+                    switch (actualCommand.mainCommand)
+                    {
+                        case "LDC":
+                            dataStack.push(actualCommand.firstAttribute);
+                            break;
 
-                    case "ADD":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-                        result = (int.Parse(string2) + int.Parse(string1)).ToString();
-                        dataStack.push(result);
-                        break;
+                        case "LDV":
+                            int1 = int.Parse(actualCommand.firstAttribute);
+                            result = (string)dataStack.getPosition(int1);
+                            dataStack.push(result);
+                            break;
 
-                    case "SUB":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-                        result = (int.Parse(string2) - int.Parse(string1)).ToString();
-                        dataStack.push(result);
-                        break;
+                        case "ADD":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+                            result = (int.Parse(string2) + int.Parse(string1)).ToString();
+                            dataStack.push(result);
+                            break;
 
-                    case "MULT":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-                        result = (int.Parse(string2) * int.Parse(string1)).ToString();
-                        dataStack.push(result);
-                        break;
+                        case "SUB":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+                            result = (int.Parse(string2) - int.Parse(string1)).ToString();
+                            dataStack.push(result);
+                            break;
 
-                    case "DIVI":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-                        result = (int.Parse(string2) / int.Parse(string1)).ToString();
-                        dataStack.push(result);
-                        break;
+                        case "MULT":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+                            result = (int.Parse(string2) * int.Parse(string1)).ToString();
+                            dataStack.push(result);
+                            break;
 
-                    case "INV":
-                        string1 = (string)dataStack.pop();
-                        result = (-int.Parse(string1)).ToString();
-                        dataStack.push(result);
-                        break;
+                        case "DIVI":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+                            result = (int.Parse(string2) / int.Parse(string1)).ToString();
+                            dataStack.push(result);
+                            break;
 
-                    case "AND":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
+                        case "INV":
+                            string1 = (string)dataStack.pop();
+                            result = (-int.Parse(string1)).ToString();
+                            dataStack.push(result);
+                            break;
 
-                        if (string1.Equals("1") && string2.Equals("1"))
-                        {
-                            result = "1";
-                        }
-                        else
-                        {
-                            result = "0";
-                        }
+                        case "AND":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
 
-                        dataStack.push(result);
-                        break;
-
-                    case "OR":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-
-                        if (string1.Equals("1") || string2.Equals("1"))
-                        {
-                            result = "1";
-                        }
-                        else
-                        {
-                            result = "0";
-                        }
-
-                        dataStack.push(result);
-                        break;
-
-                    case "NEG":
-                        string1 = (string)dataStack.pop();
-                        result = (1 - int.Parse(string1)).ToString();
-                        dataStack.push(result);
-                        break;
-
-                    case "CME":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-
-                        if (int.Parse(string2) < int.Parse(string1))
-                        {
-                            result = "1";
-                        }
-                        else
-                        {
-                            result = "0";
-                        }
-
-                        dataStack.push(result);
-                        break;
-
-                    case "CMA":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-
-                        if (int.Parse(string2) > int.Parse(string1))
-                        {
-                            result = "1";
-                        }
-                        else
-                        {
-                            result = "0";
-                        }
-
-                        dataStack.push(result);
-                        break;
-
-                    case "CEQ":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-
-                        if (string1.Equals(string2))
-                        {
-                            result = "1";
-                        }
-                        else
-                        {
-                            result = "0";
-                        }
-
-                        dataStack.push(result);
-                        break;
-
-                    case "CDIF":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-
-                        if (string1.Equals(string2))
-                        {
-                            result = "0";
-                        }
-                        else
-                        {
-                            result = "1";
-                        }
-
-                        dataStack.push(result);
-                        break;
-
-                    case "CMEQ":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-
-                        if (int.Parse(string2) <= int.Parse(string1))
-                        {
-                            result = "1";
-                        }
-                        else
-                        {
-                            result = "0";
-                        }
-
-                        dataStack.push(result);
-                        break;
-
-                    case "CMAQ":
-                        string1 = (string)dataStack.pop();
-                        string2 = (string)dataStack.pop();
-
-                        if (int.Parse(string2) >= int.Parse(string1))
-                        {
-                            result = "1";
-                        }
-                        else
-                        {
-                            result = "0";
-                        }
-
-                        dataStack.push(result);
-                        break;
-
-                    case "STR":
-                        string1 = (string)dataStack.pop();
-                        dataStack.setPosition(int.Parse(actualCommand.firstAttribute), string1);
-                        break;
-
-                    case "JMP":
-                        i = findCommandPosition(actualCommand.firstAttribute);
-                        break;
-
-                    case "JMPF":
-                        string1 = (string)dataStack.pop();
-
-                        if (string1.Equals("0"))
-                        {
-                            i = findCommandPosition(actualCommand.firstAttribute);
-                        }
-                        break;
-
-                    case "RD":
-                        using (EntradaForm entradaForm = new EntradaForm())
-                        {
-                            if (entradaForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                            if (string1.Equals("1") && string2.Equals("1"))
                             {
-                                result = entradaForm.SelectedText;
-
-                                richTextBox1.Text += result + "\n";
-                                dataStack.push(result);
+                                result = "1";
                             }
-                        }
+                            else
+                            {
+                                result = "0";
+                            }
 
-                        break;
-                    case "PRN":
-                        string1 = (string)dataStack.pop();
-                        richTextBox2.Text += string1 + "\n";
-                        break;
-                    case "ALLOC":
-                        break;
-                    case "DALLOC":
-                        break;
-                    case "CALL":
-                        result = (i + 1).ToString();
-                        dataStack.push(result);
-                        i = findCommandPosition(actualCommand.firstAttribute);
-                        break;
-                    case "RETURN":
-                        string1 = (string)dataStack.pop();
-                        i = int.Parse(string1);
-                        break;
+                            dataStack.push(result);
+                            break;
 
-                    case "START":
-                    case "NULL":
-                    case "HLT":
-                        break;
-                    default:
-                        break;
-                }
+                        case "OR":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
 
-                updateDataStackGrid();
-                i++;
-            } while (actualCommand.mainCommand != "HLT");
+                            if (string1.Equals("1") || string2.Equals("1"))
+                            {
+                                result = "1";
+                            }
+                            else
+                            {
+                                result = "0";
+                            }
+
+                            dataStack.push(result);
+                            break;
+
+                        case "NEG":
+                            string1 = (string)dataStack.pop();
+                            result = (1 - int.Parse(string1)).ToString();
+                            dataStack.push(result);
+                            break;
+
+                        case "CME":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+
+                            if (int.Parse(string2) < int.Parse(string1))
+                            {
+                                result = "1";
+                            }
+                            else
+                            {
+                                result = "0";
+                            }
+
+                            dataStack.push(result);
+                            break;
+
+                        case "CMA":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+
+                            if (int.Parse(string2) > int.Parse(string1))
+                            {
+                                result = "1";
+                            }
+                            else
+                            {
+                                result = "0";
+                            }
+
+                            dataStack.push(result);
+                            break;
+
+                        case "CEQ":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+
+                            if (string1.Equals(string2))
+                            {
+                                result = "1";
+                            }
+                            else
+                            {
+                                result = "0";
+                            }
+
+                            dataStack.push(result);
+                            break;
+
+                        case "CDIF":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+
+                            if (string1.Equals(string2))
+                            {
+                                result = "0";
+                            }
+                            else
+                            {
+                                result = "1";
+                            }
+
+                            dataStack.push(result);
+                            break;
+
+                        case "CMEQ":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+
+                            if (int.Parse(string2) <= int.Parse(string1))
+                            {
+                                result = "1";
+                            }
+                            else
+                            {
+                                result = "0";
+                            }
+
+                            dataStack.push(result);
+                            break;
+
+                        case "CMAQ":
+                            string1 = (string)dataStack.pop();
+                            string2 = (string)dataStack.pop();
+
+                            if (int.Parse(string2) >= int.Parse(string1))
+                            {
+                                result = "1";
+                            }
+                            else
+                            {
+                                result = "0";
+                            }
+
+                            dataStack.push(result);
+                            break;
+
+                        case "STR":
+                            string1 = (string)dataStack.pop();
+                            dataStack.setPosition(int.Parse(actualCommand.firstAttribute), string1);
+                            break;
+
+                        case "JMP":
+                            i = findCommandPosition(actualCommand.firstAttribute);
+                            break;
+
+                        case "JMPF":
+                            string1 = (string)dataStack.pop();
+
+                            if (string1.Equals("0"))
+                            {
+                                i = findCommandPosition(actualCommand.firstAttribute);
+                            }
+                            break;
+
+                        case "RD":
+                            using (EntradaForm entradaForm = new EntradaForm())
+                            {
+                                if (entradaForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                {
+                                    result = entradaForm.SelectedText;
+
+                                    richTextBox1.Text += result + "\n";
+                                    dataStack.push(result);
+                                }
+                            }
+
+                            break;
+
+                        case "PRN":
+                            string1 = (string)dataStack.pop();
+                            richTextBox2.Text += string1 + "\n";
+                            break;
+
+                        case "ALLOC":
+                            for (int k = 0; k <= int.Parse(actualCommand.secondAttribute)-1; k++)
+                            {
+                                string1 = (string)dataStack.getPosition(k + int.Parse(actualCommand.firstAttribute));
+
+                                if (string1 == null) string1 = "";
+
+                                dataStack.push(string1);
+                            }
+                            break;
+
+                        case "DALLOC":
+                            for (int k = int.Parse(actualCommand.secondAttribute)-1; k >= 0; k--)
+                            {
+                                string1 = (string)dataStack.pop();
+                                dataStack.setPosition((k + int.Parse(actualCommand.firstAttribute)), string1);
+                            }
+                            break;
+
+                        case "CALL":
+                            result = (i + 1).ToString();
+                            dataStack.push(result);
+                            i = findCommandPosition(actualCommand.firstAttribute);
+                            break;
+
+                        case "RETURN":
+                            string1 = (string)dataStack.pop();
+                            i = int.Parse(string1)-1;
+                            break;
+
+                        case "START":
+                        case "NULL":
+                        case "HLT":
+                            break;
+                        default:
+                            break;
+                    }
+
+                    updateDataStackGrid();
+                    i++;
+                } while (actualCommand.mainCommand != "HLT");
+            }
         }
 
         private void runStepByStep()
