@@ -277,6 +277,7 @@ namespace VirtualMachine
             }
 
             dataGridView1.Rows[selectedPosition].Selected = true;
+            dataGridView1.CurrentCell = dataGridView1.Rows[selectedPosition].Cells[0];
         }
 
         private async Task runningCodeAsync()
@@ -288,6 +289,8 @@ namespace VirtualMachine
 
                 do
                 {
+                    actualCommand = (Command)arrayListCommands[i];
+
                     if (isStepByStep || hasBreakPoint(i))
                     {
                         selectRightRow(i);
@@ -298,7 +301,6 @@ namespace VirtualMachine
                         });
                     }
 
-                    actualCommand = (Command)arrayListCommands[i];
                     string string1;
                     string string2;
                     string result;
