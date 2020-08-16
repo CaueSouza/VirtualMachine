@@ -5,8 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Net.Http.Headers;
 using System.Security;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VirtualMachine
@@ -18,7 +21,7 @@ namespace VirtualMachine
         private Stack dataStack = new Stack();
         private int operationMode = 0;
         //operationMode 0 = normal // 1 = passo a passo
-
+        private readonly ManualResetEvent mre = new ManualResetEvent(false);
         private bool hasStringEnded = false;
 
         public MainForm()
@@ -258,7 +261,7 @@ namespace VirtualMachine
             richTextBox2.Text = "";
             if (radioButton1.Checked)
             {
-                runningNormally();
+                runningNormallyAsync();
             }
             else
             {
@@ -266,7 +269,16 @@ namespace VirtualMachine
             }
         }
 
-        private void runningNormally()
+        private void selectRightRow(int selectedPosition)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                row.Selected = false;
+            }
+
+            dataGridView1.Rows[selectedPosition].Selected = true;
+        }
+        private async Task runningNormallyAsync()
         {
             if (arrayListCommands.Count != 0)
             {
@@ -275,6 +287,13 @@ namespace VirtualMachine
 
                 do
                 {
+                    selectRightRow(i);
+
+                    await Task.Run(() => {
+                        mre.WaitOne();
+                        mre.Reset();
+                    });
+
                     actualCommand = (Command)arrayListCommands[i];
                     string string1;
                     string string2;
@@ -539,6 +558,11 @@ namespace VirtualMachine
                     updateDataStackGrid();
                     i++;
                 } while (actualCommand.mainCommand != "HLT");
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.Selected = false;
+                }
             }
         }
 
@@ -576,6 +600,16 @@ namespace VirtualMachine
             {
                 radioButton1.Checked = false;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mre.Set();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

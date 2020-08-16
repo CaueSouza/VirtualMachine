@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.BreakPoints = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Linha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Instrução = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +53,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -209,7 +213,7 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(119, 309);
+            this.richTextBox1.Location = new System.Drawing.Point(45, 309);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
@@ -220,7 +224,7 @@
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(266, 309);
+            this.richTextBox2.Location = new System.Drawing.Point(191, 309);
             this.richTextBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
@@ -231,21 +235,21 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(460, 309);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(460, 292);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 15);
+            this.label1.Size = new System.Drawing.Size(115, 15);
             this.label1.TabIndex = 7;
             this.label1.Text = "Modo de Operação";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // radioButton1
             // 
-            this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(440, 326);
+            this.radioButton1.Location = new System.Drawing.Point(460, 316);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(65, 19);
+            this.radioButton1.Size = new System.Drawing.Size(110, 20);
             this.radioButton1.TabIndex = 8;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Normal";
@@ -254,11 +258,10 @@
             // 
             // radioButton2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(522, 326);
+            this.radioButton2.Location = new System.Drawing.Point(460, 340);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(97, 19);
+            this.radioButton2.Size = new System.Drawing.Size(110, 20);
             this.radioButton2.TabIndex = 8;
             this.radioButton2.Text = "Passo a Passo";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -266,10 +269,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(460, 349);
+            this.button1.Location = new System.Drawing.Point(460, 364);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 35);
+            this.button1.Size = new System.Drawing.Size(115, 35);
             this.button1.TabIndex = 9;
             this.button1.Text = "Executar";
             this.button1.UseVisualStyleBackColor = true;
@@ -278,7 +281,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(119, 292);
+            this.label2.Location = new System.Drawing.Point(45, 292);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 15);
             this.label2.TabIndex = 10;
@@ -287,17 +290,37 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(266, 292);
+            this.label3.Location = new System.Drawing.Point(191, 292);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 15);
             this.label3.TabIndex = 10;
             this.label3.Text = "Saída";
+            // 
+            // button2
+            // 
+            this.button2.ImageIndex = 0;
+            this.button2.ImageList = this.imageList1;
+            this.button2.Location = new System.Drawing.Point(356, 325);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(50, 50);
+            this.button2.TabIndex = 11;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "play-button.png");
+            this.imageList1.Images.SetKeyName(1, "button_play_image.png");
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 410);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -345,5 +368,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
