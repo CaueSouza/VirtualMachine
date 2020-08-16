@@ -5,8 +5,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Net.Http.Headers;
 using System.Security;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VirtualMachine
@@ -18,8 +21,9 @@ namespace VirtualMachine
         private Stack dataStack = new Stack();
         private int operationMode = 0;
         //operationMode 0 = normal // 1 = passo a passo
-
+        private readonly ManualResetEvent mre = new ManualResetEvent(false);
         private bool hasStringEnded = false;
+        private bool isStepByStep;
 
         public MainForm()
         {
@@ -256,17 +260,26 @@ namespace VirtualMachine
         {
             richTextBox1.Text = "";
             richTextBox2.Text = "";
-            if (radioButton1.Checked)
-            {
-                runningNormally();
-            }
-            else
-            {
-                runStepByStep();
-            }
+
+            runningCodeAsync();
         }
 
-        private void runningNormally()
+        private bool hasBreakPoint(int position)
+        {
+            return Boolean.Parse(dataGridView1.Rows[position].Cells[0].Value.ToString());
+        }
+
+        private void selectRightRow(int selectedPosition)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                row.Selected = false;
+            }
+
+            dataGridView1.Rows[selectedPosition].Selected = true;
+        }
+
+        private async Task runningCodeAsync()
         {
             if (arrayListCommands.Count != 0)
             {
@@ -275,6 +288,16 @@ namespace VirtualMachine
 
                 do
                 {
+                    if (isStepByStep || hasBreakPoint(i))
+                    {
+                        selectRightRow(i);
+
+                        await Task.Run(() => {
+                            mre.WaitOne();
+                            mre.Reset();
+                        });
+                    }
+
                     actualCommand = (Command)arrayListCommands[i];
                     string string1;
                     string string2;
@@ -539,12 +562,12 @@ namespace VirtualMachine
                     updateDataStackGrid();
                     i++;
                 } while (actualCommand.mainCommand != "HLT");
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    row.Selected = false;
+                }
             }
-        }
-
-        private void runStepByStep()
-        {
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -564,6 +587,8 @@ namespace VirtualMachine
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e) //normal
         {
+            isStepByStep = false;
+
             if (radioButton1.Checked == true)
             {
                 radioButton2.Checked = false;
@@ -572,10 +597,21 @@ namespace VirtualMachine
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e) //passo a passo
         {
+            isStepByStep = true;
             if (radioButton2.Checked == true)
             {
                 radioButton1.Checked = false;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mre.Set();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
