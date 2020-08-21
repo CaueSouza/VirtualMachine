@@ -19,8 +19,6 @@ namespace VirtualMachine
         private OpenFileDialog openFileDialog;
         private ArrayList arrayListCommands = new ArrayList();
         private Stack dataStack = new Stack();
-        private int operationMode = 0;
-        //operationMode 0 = normal // 1 = passo a passo
         private readonly ManualResetEvent mre = new ManualResetEvent(false);
         private bool hasStringEnded = false;
         private bool isStepByStep;
@@ -35,6 +33,8 @@ namespace VirtualMachine
             };
 
             InitializeComponent();
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView2.RowHeadersVisible = false;
         }
 
         private void parseFileCommands(String filePath)
@@ -591,7 +591,7 @@ namespace VirtualMachine
         {
             isStepByStep = false;
 
-            if (radioButton1.Checked == true)
+            if (radioButton1.Checked)
             {
                 radioButton2.Checked = false;
             }
@@ -600,7 +600,8 @@ namespace VirtualMachine
         private void radioButton2_CheckedChanged(object sender, EventArgs e) //passo a passo
         {
             isStepByStep = true;
-            if (radioButton2.Checked == true)
+
+            if (radioButton2.Checked)
             {
                 radioButton1.Checked = false;
             }
