@@ -205,6 +205,18 @@ namespace VirtualMachine
             showCodeDataInGrid();
         }
 
+        private void toolStripMenuItem8_Click(Object sender, EventArgs e)
+        {
+            ComandosForm comandosForm = new ComandosForm();
+            comandosForm.ShowDialog();
+        }
+
+        private void toolStripMenuItem9_Click(Object sender, EventArgs e)
+        {
+            ComoUsarForm form = new ComoUsarForm();
+            form.ShowDialog();
+        }
+
         private int findCommandPosition(string command)
         {
             int count = 0;
@@ -612,6 +624,11 @@ namespace VirtualMachine
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
