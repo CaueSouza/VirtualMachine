@@ -86,9 +86,9 @@
             this.label3.Location = new System.Drawing.Point(12, 42);
             this.label3.MaximumSize = new System.Drawing.Size(500, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(358, 15);
+            this.label3.Size = new System.Drawing.Size(292, 15);
             this.label3.TabIndex = 1;
-            this.label3.Text = "1.1.  Passe o mouse sobre a aba Arquivo e selecione Inserir Arquivo";
+            this.label3.Text = "1.1.  Clique na aba Arquivo e selecione Inserir Arquivo.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
@@ -110,8 +110,8 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(399, 30);
             this.label5.TabIndex = 6;
-            this.label5.Text = "2.1. Inserido o arquivo, selecione entre os modos Normal e Passo a Passo e clque " +
-    "em Executar";
+            this.label5.Text = "2.1. Inserido o arquivo, selecione entre os modos Normal e Passo a Passo e clique" +
+    " em Executar.";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox3
@@ -145,8 +145,8 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(399, 30);
             this.label7.TabIndex = 6;
-            this.label7.Text = "A MV executará todo o código normalmente, parando somente em linhas que hajam bre" +
-    "akpoints.";
+            this.label7.Text = "A MV executará todo o código normalmente, parando somente em linhas que tenham br" +
+    "eakpoints.";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
@@ -210,7 +210,7 @@
             // pictureBox7
             // 
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(472, 245);
+            this.pictureBox7.Location = new System.Drawing.Point(472, 265);
             this.pictureBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(400, 138);
@@ -235,9 +235,9 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label14.Location = new System.Drawing.Point(472, 562);
-            this.label14.MaximumSize = new System.Drawing.Size(400, 45);
+            this.label14.MaximumSize = new System.Drawing.Size(400, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(387, 45);
+            this.label14.Size = new System.Drawing.Size(387, 60);
             this.label14.TabIndex = 6;
             this.label14.Text = resources.GetString("label14.Text");
             this.label14.Click += new System.EventHandler(this.label14_Click);
@@ -275,8 +275,8 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(400, 30);
             this.label16.TabIndex = 6;
-            this.label16.Text = "Caso seja necessária a inserção de valor uma aba como a mostrada abaixo irá apare" +
-    "cer.";
+            this.label16.Text = "Caso seja necessária a inserção de valor, uma aba como a mostrada abaixo irá apar" +
+    "ecer.";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label16.Click += new System.EventHandler(this.label14_Click);
             // 
@@ -301,7 +301,7 @@
             this.label13.Size = new System.Drawing.Size(396, 30);
             this.label13.TabIndex = 6;
             this.label13.Text = "1.2. Uma nova janela abrirá, selecione o código Assembly a ser executado e clique" +
-    " em Abrir";
+    " em Abrir.";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ComoUsarForm

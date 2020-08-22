@@ -101,7 +101,7 @@
   <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing.Common" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAIUAAAByCAIAAADyL4XKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vQAADr0BR/uQrQAABnNJREFUeF7tmktO7DoQhs+ekBoWgA4bgEmPWrAFGCIkGLQEm2DeulMQj8mRGJ89
+        vAAADrwBlbxySQAABnNJREFUeF7tmktO7DoQhs+ekBoWgA4bgEmPWrAFGCIkGLQEm2DeulMQj8mRGJ89
         3CEIJMZIcO9vV9muJHY6gU6oRvUNQrlcftXfidO0f70amjA9dGF66ML00IXpoQvTQxemhy666LGY/fJM
         5n/Zk3OV+TufIHS24GIXujahuECn2awEv35MD+P3WtdS+uiR1tv0tDG4HuPpwCxmbsggyirpqsdkIhbe
         cLTz8/QYjs73x2wWPw0uCZP53JVDJuINI5JDuYpwcnORkXwT6a21aejBsXGewc53IpzO5+dGlVTTnICr
@@ -403,6 +403,6 @@
 </value>
   </data>
   <data name="label14.Text" xml:space="preserve">
-    <value>Caso o usuário deseje alterar o modo de execução durante a mesma, No momento em que a MV pausar sua execução em um BreakPoint, basta alterar o modo na aba "Modo de Execução", e então clicar no botão Play para que a execução continue com o modo selecionado.</value>
+    <value>Caso o usuário deseje alterar o modo de execução durante a mesma, no momento em que a MV pausar sua execução em um BreakPoint, basta alterar o modo na aba "Modo de Execução", e então clicar no botão Play para que a execução continue com o modo selecionado.</value>
   </data>
 </root>
