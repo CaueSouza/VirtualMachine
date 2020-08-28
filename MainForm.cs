@@ -504,7 +504,7 @@ namespace VirtualMachine
                             break;
 
                         case "JMP":
-                            i = findCommandPosition(actualCommand.firstAttribute);
+                            i = findCommandPosition(actualCommand.firstAttribute) - 1;
                             break;
 
                         case "JMPF":
@@ -512,14 +512,14 @@ namespace VirtualMachine
 
                             if (string1.Equals("0"))
                             {
-                                i = findCommandPosition(actualCommand.firstAttribute);
+                                i = findCommandPosition(actualCommand.firstAttribute) - 1;
                             }
                             break;
 
                         case "RD":
                             using (EntradaForm entradaForm = new EntradaForm())
                             {
-                                if (entradaForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                                if (entradaForm.ShowDialog() == DialogResult.OK)
                                 {
                                     result = entradaForm.SelectedText;
 
