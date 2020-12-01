@@ -217,6 +217,15 @@ namespace VirtualMachine
             form.ShowDialog();
         }
 
+        private void toolStripMenuItem4_Click(Object sender, EventArgs e)
+        {
+            arrayListCommands = new ArrayList();
+            dataGridView1.Rows.Clear();
+            dataGridView2.Rows.Clear();
+            dataStack.cleanStack();
+            showCodeDataInGrid();
+        }
+
         private int findCommandPosition(string command)
         {
             int count = 0;
