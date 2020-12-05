@@ -223,6 +223,8 @@ namespace VirtualMachine
             dataGridView1.Rows.Clear();
             dataGridView2.Rows.Clear();
             dataStack.cleanStack();
+            richTextBox1.Text = "";
+            richTextBox2.Text = "";
             showCodeDataInGrid();
         }
 
